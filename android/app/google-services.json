@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "797814517068",
+    "project_id": "learnfirebasepencilbox",
+    "storage_bucket": "learnfirebasepencilbox.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:797814517068:android:e8d1f051a0ad01dc6c73e9",
+        "android_client_info": {
+          "package_name": "com.example.chat_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "797814517068-l3mmgues32675sufo0h5bkc2so4rbstg.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.chat_app",
+            "certificate_hash": "fc2c3af5a8b54401f16ad8dd918b596e2be2deb9"
+          }
+        },
+        {
+          "client_id": "797814517068-gc9r40vorkk5i1i5a9270j35o0iru2vq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDS8xKVbZT7HlUaW8NB6m2MQON6gyg1kLk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "797814517068-gc9r40vorkk5i1i5a9270j35o0iru2vq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
