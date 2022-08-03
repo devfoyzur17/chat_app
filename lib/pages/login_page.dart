@@ -2,8 +2,7 @@
 
 import 'package:chat_app/auth/auth_service.dart';
 import 'package:chat_app/models/User_model.dart';
-import 'package:chat_app/pages/launcher_page.dart';
-import 'package:chat_app/pages/user_profile.dart';
+import 'package:chat_app/pages/launcher_page.dart'; 
 import 'package:chat_app/providers/user_provider.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';

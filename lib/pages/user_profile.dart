@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors, use_build_context_synchronously
+
 import 'package:chat_app/auth/auth_service.dart';
 import 'package:chat_app/models/User_model.dart';
 import 'package:chat_app/providers/user_provider.dart';
@@ -38,6 +40,7 @@ class _UserProfilePageState extends State<UserProfilePage> {
             builder: (context, snapshot) {
               if (snapshot.hasData) {
                 final userModel = UserModel.fromMap(snapshot.data!.data()!);
+
                 return ListView(
                   children: [
                     SizedBox(
@@ -51,12 +54,15 @@ class _UserProfilePageState extends State<UserProfilePage> {
                               width: 100,
                               fit: BoxFit.cover,
                             )
-                          : Image.network(
-                              userModel.image!,
-                              height: 100,
-                              width: 100,
-                              fit: BoxFit.cover,
-                            ),
+                          : ClipRRect(
+                        borderRadius: BorderRadius.circular(100),
+                            child: Image.network(
+                                userModel.image!,
+                                height: 100,
+                                width: 100,
+                                fit: BoxFit.cover,
+                              ),
+                          ),
                     ),
                     TextButton.icon(
                         onPressed: updateImage,
@@ -72,9 +78,10 @@ class _UserProfilePageState extends State<UserProfilePage> {
                       trailing: IconButton(
                           onPressed: () {
                             showInputDialog("Display Name", userModel.name,
-                                (value) {
+                                (value) async {
                               provider.updateProfile(
                                   AuthService.user!.uid, {"name": value});
+                              await AuthService.updateDisplayName(value);
                             });
                           },
                           icon: Icon(Icons.edit)),
@@ -84,14 +91,26 @@ class _UserProfilePageState extends State<UserProfilePage> {
                           ? "No Mobile number"
                           : userModel.mobile!),
                       trailing:
-                          IconButton(onPressed: () {}, icon: Icon(Icons.edit)),
+                          IconButton(onPressed: () {
+                            showInputDialog("Mobile Number", userModel.mobile,
+                                    (value) {
+                                  provider.updateProfile(
+                                      AuthService.user!.uid, {"mobile": value});
+                                });
+                          }, icon: Icon(Icons.edit)),
                     ),
                     ListTile(
                       title: Text(userModel.email == null
                           ? "No email address"
                           : userModel.email!),
                       trailing:
-                          IconButton(onPressed: () {}, icon: Icon(Icons.edit)),
+                          IconButton(onPressed: () {
+                            showInputDialog("Email Address", userModel.email,
+                                    (value) {
+                                  provider.updateProfile(
+                                      AuthService.user!.uid, {"email": value});
+                                });
+                          }, icon: Icon(Icons.edit)),
                     ),
                   ],
                 );
@@ -108,7 +127,7 @@ class _UserProfilePageState extends State<UserProfilePage> {
   }
 
   void updateImage() async {
-     final xFile = await ImagePicker().pickImage(source: ImageSource.camera,imageQuality: 75);
+     final xFile = await ImagePicker().pickImage(source: ImageSource.gallery,imageQuality: 75);
     if (xFile != null) {
       try {
         final downloadurl =
@@ -116,6 +135,7 @@ class _UserProfilePageState extends State<UserProfilePage> {
                 .updateImage(xFile);
         await Provider.of<UserProvider>(context, listen: false)
             .updateProfile(AuthService.user!.uid, {"image": downloadurl});
+        await AuthService.updateDisplayImage(downloadurl);
       } catch (e) {
         rethrow;
       }
