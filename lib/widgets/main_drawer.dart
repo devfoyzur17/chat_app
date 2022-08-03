@@ -1,4 +1,5 @@
 import 'package:chat_app/auth/auth_service.dart';
+import 'package:chat_app/pages/chat_room_page.dart';
 import 'package:chat_app/pages/login_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -11,11 +12,23 @@ class MainDrawer extends StatelessWidget {
     return Drawer(
       child: ListView(
         children: [
-          Container(
-            height: 200,
-            color: Colors.blue,
 
+
+
+          UserAccountsDrawerHeader(
+
+              accountName: Text(AuthService.user!.displayName == null ?"No display name set" : AuthService.user!.displayName!),
+              accountEmail: Text(AuthService.user!.email!)
           ),
+          ListTile(
+            onTap: (){
+              Navigator.pushReplacementNamed(context, ChatRoomPage.routeName);
+
+            },
+            leading: Icon(Icons.chat_rounded),
+            title: const Text("Chat Room"),
+          ),
+
           ListTile(
             onTap: ()async{
               await AuthService.logout();
@@ -24,7 +37,9 @@ class MainDrawer extends StatelessWidget {
             },
             leading: Icon(Icons.logout),
             title: const Text("LOGOUT"),
-          )
+          ),
+
+
         ],
       ),
     );
