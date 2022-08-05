@@ -10,6 +10,12 @@ import '../models/User_model.dart';
 
 class UserProvider extends ChangeNotifier{
   List<UserModel> userList =[];
+  List<UserModel> allUserList=[];
+  List groupUsers=[];
+
+  checkMember(bool checkBool){
+
+  }
 
   Future<void> addUser(UserModel userModel) => DBHelper.addUser(userModel);
 
@@ -26,4 +32,18 @@ class UserProvider extends ChangeNotifier{
     final snapshot =   await uploadTask.whenComplete(() => null);
     return snapshot.ref.getDownloadURL();
   }
+
+
+  getAllUsers() {
+    DBHelper.getAllUsers().listen((snapshot) {
+      allUserList = List.generate(snapshot.docs.length,
+              (index) => UserModel.fromMap(snapshot.docs[index].data()));
+      notifyListeners();
+    });
+  }
+
+
+
+  Future<void> updateAvailable(String uid, bool isAvailable)=> DBHelper.updateAvailable(uid, isAvailable);
+
 }

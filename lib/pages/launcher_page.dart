@@ -1,6 +1,7 @@
  
 import 'package:chat_app/auth/auth_service.dart';
 import 'package:chat_app/pages/login_page.dart';
+import 'package:chat_app/pages/user_list_page.dart';
 import 'package:chat_app/pages/user_profile.dart';
 import 'package:flutter/material.dart'; 
 
@@ -20,7 +21,7 @@ class _LauncherPageState extends State<LauncherPage> {
     if(AuthService.user==null){
       Navigator.pushReplacementNamed(context, LoginPage.routeName);
     }else{
-      Navigator.pushReplacementNamed(context, UserProfilePage.routeName);
+      Navigator.pushReplacementNamed(context, UserListPage.routeName);
     }
 
    });

@@ -2,7 +2,8 @@
 
 import 'package:chat_app/auth/auth_service.dart';
 import 'package:chat_app/models/User_model.dart';
-import 'package:chat_app/pages/launcher_page.dart'; 
+import 'package:chat_app/pages/launcher_page.dart';
+import 'package:chat_app/pages/user_profile.dart';
 import 'package:chat_app/providers/user_provider.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -192,38 +193,5 @@ class _LoginPageState extends State<LoginPage> {
       }
     }
   }
-  //
-  // authonticate() async {
-  //   if (formKey.currentState!.validate()) {
-  //     bool status;
-  //     try {
-  //       if (isLogin) {
-  //         status = await AuthService.login(
-  //             emailController.text, passwordController.text);
-  //       } else {
-  //         status = await AuthService.register(
-  //             emailController.text, passwordController.text);
-  //       }
-  //       if (status) {
-  //         if (!isLogin) {
-  //           await AuthService.register(
-  //               emailController.text, passwordController.text);
-  //           await AuthService.sendVeryficationMail();
-  //           final userModel = UserModel(
-  //               uid: AuthService.user!.uid, email: AuthService.user!.email);
-  //           if (mounted) {
-  //             await Provider.of<UserProvider>(context, listen: false)
-  //                 .addUser(userModel);
-  //           }
-  //         }
-  //         if (!mounted) return;
-  //         Navigator.pushReplacementNamed(context, LauncherPage.routeName);
-  //       }
-  //     } on FirebaseAuthException catch (e) {
-  //       setState(() {
-  //         _errorMsg = e.message!;
-  //       });
-  //     }
-  //   }
-  // }
+
 }

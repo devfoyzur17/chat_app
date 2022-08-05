@@ -8,6 +8,16 @@ import '../models/message_model.dart';
 class ChatRoomProvider extends ChangeNotifier {
   List<MessageModel> msgList = [];
 
+
+  Future<void> addGroup(String groupName,String userid) {
+    return DBHelper.addGroup(groupName, userid);
+
+  }
+  Future<void> addgroupMsg(String groupName,MessageModel messageModel){
+    return DBHelper.addgroupMsg(groupName, messageModel);
+  }
+
+
   Future<void> addMsg(String msg) {
     final messageModel = MessageModel(
         msgId: DateTime.now().microsecondsSinceEpoch,

@@ -1,5 +1,3 @@
-// ignore_for_file: prefer_const_constructors, use_build_context_synchronously
-
 import 'package:chat_app/auth/auth_service.dart';
 import 'package:chat_app/models/User_model.dart';
 import 'package:chat_app/providers/user_provider.dart';
